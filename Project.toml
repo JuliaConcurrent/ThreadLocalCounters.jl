@@ -3,6 +3,10 @@ uuid = "a69d1b5e-1cd7-4edd-aa26-bee352d56156"
 authors = ["Takafumi Arakaki <aka.tkf@gmail.com> and contributors"]
 version = "0.1.0-DEV"
 
+[deps]
+RecordArrays = "f09397d6-3230-428f-8b46-6217caaab93c"
+StaticStorages = "ee8d4ff6-3960-4079-a45c-572c714b7398"
+
 [compat]
 julia = "1"
 
