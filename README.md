@@ -11,7 +11,7 @@ julia> using ThreadLocalCounters
 julia> hello_world() = @tlc hello_world;
 ```
 
-The installed counter can be enumerated using `ThreadLocalCounters.list`:
+The installed counters can be enumerated using `ThreadLocalCounters.list`:
 
 ```JULIA
 julia> ThreadLocalCounters.list(; all = true)
