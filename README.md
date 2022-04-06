@@ -14,7 +14,7 @@ julia> hello_world() = @tlc hello_world;
 The installed counter can be enumerated using `ThreadLocalCounters.list`:
 
 ```JULIA
-julia> ThreadLocalCounters.list()
+julia> ThreadLocalCounters.list(; all = true)
 1-element Vector{ThreadLocalCounters.Internal.ThreadLocalCounter}:
  [0] hello_world @Main #= REPL[2]:2 =#
 ```
