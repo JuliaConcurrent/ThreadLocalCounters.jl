@@ -47,7 +47,8 @@ macro tlc(name::Symbol = :_default_)
     @gensym initmodule
     initializer = quote
         module $initmodule
-        __init__() = $init!($(QuoteNode(tlc)))
+        const TLC = $(QuoteNode(tlc))
+        __init__() = $init!(TLC)
         end
     end
     @assert initializer.head === :block
@@ -55,7 +56,7 @@ macro tlc(name::Symbol = :_default_)
     Base.eval(__module__, initializer)
 
     quote
-        $inc!($(QuoteNode(tlc)))
+        inc!($(esc(initmodule)).TLC)
         nothing
     end
 end
