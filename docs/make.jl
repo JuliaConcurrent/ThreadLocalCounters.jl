@@ -24,7 +24,7 @@ makedocs(
 )
 
 deploydocs(;
-    repo = "JuliaConcurrent/ThreadLocalCounters.jl",
+    repo = "github.com/JuliaConcurrent/ThreadLocalCounters.jl",
     devbranch = "main",
     push_preview = true,
     # Ref:
