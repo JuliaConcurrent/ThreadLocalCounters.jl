@@ -53,14 +53,25 @@ macro tlc(name::Symbol = :_default_)
     end
 end
 
-"""
-    ThreadLocalCounters.list()
+Base.sum(tlc::ThreadLocalCounter) = sum(x.n for x in tlc.counters)
 
-Get a list of all thread-local counters.
+"""
+    ThreadLocalCounters.list(; all = false)
+
+Get a list of all thread-local counters.  The caller must ensure that no thread is accessing
+the counters.
+
+Pass `all = true` to include counters with zero counts.
 """
 ThreadLocalCounters.list
-ThreadLocalCounters.list() =
-    collect(ThreadLocalCounter, values(StaticStorages.getbucket(TLC_BUCKET)))
+
+function ThreadLocalCounters.list(; all = false)
+    cs = collect(ThreadLocalCounter, values(StaticStorages.getbucket(TLC_BUCKET)))
+    if !all
+        filter!(tlc -> sum(tlc) > 0, cs)
+    end
+    return cs
+end
 
 """
     ThreadLocalCounters.clear()
