@@ -10,11 +10,4 @@ StaticStorages = "ee8d4ff6-3960-4079-a45c-572c714b7398"
 [compat]
 RecordArrays = "0.1"
 StaticStorages = "0.1"
-julia = "1"
-
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-TestFunctionRunner = "792026f5-ac9a-4a19-adcb-47b0ce2deb5d"
-
-[targets]
-test = ["Test", "TestFunctionRunner"]
+julia = "1.6"
