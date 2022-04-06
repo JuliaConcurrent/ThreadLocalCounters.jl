@@ -32,6 +32,13 @@ const TLC_BUCKET = StaticStorages.BucketKey()
     @tlc [name]
 
 Count the time this expression is evaluated using thread-local counters.
+
+# Examples
+```jldoctest
+julia> using ThreadLocalCounters
+
+julia> hello_world() = @tlc hello_world;
+```
 """
 macro tlc(name::Symbol = :_default_)
     tlc = ThreadLocalCounter(name, __module__, __source__)
