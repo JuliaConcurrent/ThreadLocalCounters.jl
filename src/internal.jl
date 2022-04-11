@@ -74,7 +74,9 @@ Pass `all = true` to include counters with zero counts.
 ThreadLocalCounters.list
 
 function ThreadLocalCounters.list(; all = false)
-    cs = collect(ThreadLocalCounter, values(StaticStorages.getbucket(TLC_BUCKET)))
+    bucket = StaticStorages.getbucket(TLC_BUCKET)
+    bucket === nothing && return ThreadLocalCounter[]
+    cs = collect(ThreadLocalCounter, values(bucket))
     if !all
         filter!(tlc -> sum(tlc) > 0, cs)
     end
@@ -88,7 +90,9 @@ Reset all counters. The caller must ensure that no thread is accessing the
 counters.
 """
 function ThreadLocalCounters.clear()
-    foreach(empty!, values(StaticStorages.getbucket(TLC_BUCKET)))
+    bucket = StaticStorages.getbucket(TLC_BUCKET)
+    bucket === nothing && return nothing
+    foreach(empty!, values(bucket))
 end
 
 function Base.show(io::IO, ::MIME"text/plain", tlc::ThreadLocalCounter)
